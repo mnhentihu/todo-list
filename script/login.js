@@ -35,3 +35,5 @@ function login() {
     errorDiv.textContent = "Invalid username or password";
   }
 }
+
+window.login = login;
