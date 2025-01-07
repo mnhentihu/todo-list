@@ -19,8 +19,8 @@ if (loggedInUser) {
 
   welcomeMessage.textContent = `Welcome, ${fullName}!`;
   userInfo.innerHTML = `
-          ${email} <br>
-          <span class="font-semibold">${jabatan}</span>
+          <span class="font-light text-xs sm:text-sm text-secondary">${email}</span> <br>
+          <span class="font-semibold text-sm sm:text-base">${jabatan}</span>
       `;
 }
 
