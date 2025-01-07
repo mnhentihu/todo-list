@@ -1,17 +1,14 @@
-// Fungsi untuk logout
 function logout() {
   localStorage.removeItem("loggedInUser");
-  window.location.href = "index.html"; // Redirect kembali ke halaman login
+  window.location.href = "index.html";
 }
 
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
-// Jika pengguna belum login, arahkan kembali ke halaman login
 if (!loggedInUser) {
   window.location.href = "index.html";
 }
 
-// Tampilkan informasi pengguna di dashboard
 const welcomeMessage = document.getElementById("welcome-message");
 const userInfo = document.getElementById("user-info");
 
@@ -38,7 +35,6 @@ function updateTime() {
   const seconds = now.getSeconds().toString().padStart(2, "0");
   const formattedTime = `${hours}:${minutes}:${seconds}`;
 
-  // Format tanggal dan hari (Hari, dd Month yyyy)
   const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
   const months = [
     "Januari",
@@ -63,7 +59,5 @@ function updateTime() {
   dateAndDayElement.textContent = formattedDateAndDay;
   timeElement.textContent = formattedTime;
 }
-
 setInterval(updateTime, 1000);
-
 updateTime();
