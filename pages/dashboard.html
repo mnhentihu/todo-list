@@ -12,6 +12,7 @@
     />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../script/dashboard.js" defer></script>
+    <script src="../script/tasks.js" defer></script>
     <script>
       tailwind.config = {
         theme: {
@@ -32,59 +33,132 @@
       };
     </script>
   </head>
-  <body class="bg-quinary min-h-screen flex items-center justify-center">
-    <div class="w-full max-w-screen-xl px-6">
-      <div class="flex gap-6">
-        <!-- Div 1: Card User -->
+  <body class="bg-quinary h-screen flex items-center justify-center">
+    <div class="w-full p-6">
+      <div class="flex flex-col sm:flex-row gap-6">
         <div
-          class="w-1/4 bg-white p-6 rounded-lg shadow-lg flex flex-col justify-between max-h-96"
+          class="w-full sm:w-1/4 bg-white p-6 rounded-lg shadow-lg flex flex-col justify-between"
         >
-          <h2 class="text-2xl font-bold mb-4 text-center">User Info</h2>
+          <h2
+            class="text-base font-semibold sm:text-2xl sm:font-bold mb-4 text-center"
+          >
+            User Info
+          </h2>
           <div class="text-center">
-            <p id="welcome-message" class="text-normal font-semibold mb-2">
+            <p
+              id="welcome-message"
+              class="text-sm font-light sm:text-normal sm:font-semibold mb-2"
+            >
               Welcome!
             </p>
-            <p id="user-info" class="text-sm text-textColor"></p>
+            <p id="user-info" class="text-xs sm:text-sm text-textColor"></p>
           </div>
-          <div id="time-section" class="text-center mb-4">
+          <div id="time-section" class="text-center sm:mb-4">
             <h2
-              class="text-lg text-textColor font-semibold"
+              class="text-sm font-light sm:text-lg sm:font-semibold text-textColor"
               id="date-and-day"
             ></h2>
-            <p class="text-secondary text-xl font-medium" id="current-time"></p>
+            <p
+              class="text-secondary text-sm font-light sm:text-lg sm:font-semibold"
+              id="current-time"
+            ></p>
           </div>
           <button
-            class="mt-4 bg-secondary text-white px-4 py-2 rounded hover:bg-primary transition"
+            class="mt-4 bg-primary text-white px-4 py-2 rounded hover:bg-secondary transition"
             onclick="logout()"
           >
             Logout
           </button>
         </div>
+        <div class="w-full sm:w-3/4 bg-white p-6 rounded-lg shadow-lg">
+          <div class="flex flex-col justify-between items-center">
+            <h2 class="text-lg sm:text-2xl font-bold mb-4">
+              Company To-Do List
+            </h2>
+            <div class="mb-8 w-full">
+              <form id="todo-form" class="space-y-4">
+                <div>
+                  <label
+                    for="task"
+                    class="block text-gray-700 font-medium text-sm sm:text-base"
+                    >Task Description</label
+                  >
+                  <textarea
+                    id="task"
+                    rows="3"
+                    class="w-full p-2 border border-gray-300 rounded-md text-sm sm:text-base"
+                    placeholder="Enter task description"
+                  ></textarea>
+                </div>
+                <div
+                  class="w-full flex flex-col sm:flex-row justify-start items-start gap-4"
+                >
+                  <div>
+                    <label
+                      for="priority"
+                      class="text-gray-700 font-medium text-sm sm:text-base"
+                      >Priority</label
+                    >
+                    <select
+                      id="priority"
+                      class="w-full p-2 border border-gray-300 rounded-md text-sm sm:text-base"
+                    >
+                      <option value="" disabled selected>
+                        Select priority
+                      </option>
+                      <option value="High">High</option>
+                      <option value="Medium">Medium</option>
+                      <option value="Low">Low</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="deadline" class="text-gray-700 font-medium"
+                      >Deadline</label
+                    >
+                    <input
+                      type="datetime-local"
+                      id="deadline"
+                      class="w-full p-2 border border-gray-300 rounded-md text-sm sm:text-base"
+                    />
+                  </div>
+                </div>
 
-        <!-- Div 2: To-Do List -->
-        <div class="w-3/4 bg-white p-6 rounded-lg shadow-lg">
-          <div class="flex justify-between items-center">
-            <h2 class="text-2xl font-bold mb-4">Company To-Do List</h2>
-            <button
-              class="rounded-full w-fit px-3 py-1 bg-secondary hover:bg-primary text-white"
-            >
-              <a href="/pages/create-task.html">Add Task +</a>
-            </button>
+                <button
+                  type="submit"
+                  class="w-1/4 bg-primary hover:bg-secondary text-white py-2 rounded-md text-sm sm:text-base"
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
           </div>
-          <div class="space-y-4">
-            <!-- Example To-Do List Items -->
-            <div class="p-4 border border-gray-300 rounded">
-              <p class="font-semibold">Task 1</p>
-              <p class="text-sm text-gray-600">Description of task 1.</p>
-            </div>
-            <div class="p-4 border border-gray-300 rounded">
-              <p class="font-semibold">Task 2</p>
-              <p class="text-sm text-gray-600">Description of task 2.</p>
-            </div>
-            <div class="p-4 border border-gray-300 rounded">
-              <p class="font-semibold">Task 3</p>
-              <p class="text-sm text-gray-600">Description of task 3.</p>
-            </div>
+          <div>
+            <nav class="flex mb-4">
+              <button
+                id="tab-todo"
+                class="px-4 py-2 rounded-l text-white bg-primary"
+                onclick="switchTab('todo')"
+              >
+                Tasks to Do
+              </button>
+              <button
+                id="tab-completed"
+                class="px-4 py-2 rounded-r text-white bg-secondary hover:bg-primary"
+                onclick="switchTab('completed')"
+              >
+                Completed Tasks
+              </button>
+            </nav>
+
+            <div id="tasks-container" class="space-y-4"></div>
+          </div>
+          <div class="flex justify-between mt-6">
+            <button
+              onclick="clearAllTasks()"
+              class="w-fit sm:w-1/4 text-sm sm:text-base bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition"
+            >
+              Clear All Tasks
+            </button>
           </div>
         </div>
       </div>
