@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do | Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../script/dashboard.js" defer></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              inter: ["Inter", "sans-serif"],
+            },
+            colors: {
+              primary: "#0e1d54",
+              secondary: "#597aaf",
+              tertiary: "#a4b4cb",
+              quaternary: "#ecedef",
+              quinary: "#e8eaed",
+              textColor: "#19283d",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-quinary min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-screen-xl px-6">
+      <div class="flex gap-6">
+        <!-- Div 1: Card User -->
+        <div
+          class="w-1/4 bg-white p-6 rounded-lg shadow-lg flex flex-col justify-between max-h-96"
+        >
+          <h2 class="text-2xl font-bold mb-4 text-center">User Info</h2>
+          <div class="text-center">
+            <p id="welcome-message" class="text-normal font-semibold mb-2">
+              Welcome!
+            </p>
+            <p id="user-info" class="text-sm text-textColor"></p>
+          </div>
+          <div id="time-section" class="text-center mb-4">
+            <h2
+              class="text-lg text-textColor font-semibold"
+              id="date-and-day"
+            ></h2>
+            <p class="text-secondary text-xl font-medium" id="current-time"></p>
+          </div>
+          <button
+            class="mt-4 bg-secondary text-white px-4 py-2 rounded hover:bg-primary transition"
+            onclick="logout()"
+          >
+            Logout
+          </button>
+        </div>
+
+        <!-- Div 2: To-Do List -->
+        <div class="w-3/4 bg-white p-6 rounded-lg shadow-lg">
+          <div class="flex justify-between items-center">
+            <h2 class="text-2xl font-bold mb-4">Company To-Do List</h2>
+            <button
+              class="rounded-full w-fit px-3 py-1 bg-secondary hover:bg-primary text-white"
+            >
+              <a href="/pages/create-task.html">Add Task +</a>
+            </button>
+          </div>
+          <div class="space-y-4">
+            <!-- Example To-Do List Items -->
+            <div class="p-4 border border-gray-300 rounded">
+              <p class="font-semibold">Task 1</p>
+              <p class="text-sm text-gray-600">Description of task 1.</p>
+            </div>
+            <div class="p-4 border border-gray-300 rounded">
+              <p class="font-semibold">Task 2</p>
+              <p class="text-sm text-gray-600">Description of task 2.</p>
+            </div>
+            <div class="p-4 border border-gray-300 rounded">
+              <p class="font-semibold">Task 3</p>
+              <p class="text-sm text-gray-600">Description of task 3.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
