@@ -1,7 +1,7 @@
 Login
 
-username : mister.x
+username : mister.x ||
 password : 12345678
 
-username : susilo.joko
+username : susilo.joko ||
 password : 12345678
